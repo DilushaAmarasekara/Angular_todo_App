@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <br/><br/>
+
+            <h2>Create new task</h2>
+
+            <hr>
+
+            <div class="form-group">
+                <label>Task Name</label>
+                <input class="form-control" type="text" [(ngModel)]="taskName" name="taskName" >
+
+                <!-- {{taskName}} -->
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" [(ngModel)]="taskStatus" name="taskStatus">
+                    <option value="pending">pending</option>
+                    <option value="ongoing">ongoing</option>
+                    <option value="completed">completed</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-primary pull-right" *ngIf="!editMode" (click)="addTask()">Add Task</button>
+
+            <button class="btn btn-warning pull-right" *ngIf="editMode" (click)="udpateTask()">Update Task</button>
+        </div>
+
+        <div class="col-md-8">
+            <br/><br/>
+            
+            <h2>My Todo List</h2>
+
+            <hr>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Task</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of myTaskList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{task.name}}</td>
+                        <td>{{task.status}}</td>
+                        <td>
+                            <button class="btn btn-info btn-sm" (click)="editTask(task)">Edit</button>
+                            &nbsp;&nbsp;
+                            <button class="btn btn-danger btn-sm" (click)="deleteTask(task._id)">Delete</button>
+                        </td>
+                    <tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
